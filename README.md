@@ -10,13 +10,16 @@ FastAPI + Docker serving demo for CTR (click-through rate) models.
 ```bash
 docker build -t ctr-api .
 docker run --rm -p 8000:8000 ctr-api
-Test endpoints (PowerShell)
+```
+
+## Test endpoints (PowerShell)
 irm http://127.0.0.1:8000/health
 irm http://127.0.0.1:8000/model-info
 
 $body = '{"features":[1,2,3],"request_id":"demo"}'
 irm http://127.0.0.1:8000/predict -Method Post -ContentType "application/json" -Body $body
-Response examples (what you should see)
+
+## Response examples (what you should see)
 
 GET /health
 
@@ -32,11 +35,11 @@ POST /predict
 
 Swagger UI: http://127.0.0.1:8000/docs
 
-Utilities
+## Utilities
 
 Inspect a model checkpoint:
 
 py inspect_ckpt.py --path models/model.pth
 Related
 
-Modeling benchmark (leakage-safe CTR/RecSys): https://github.com/yoonjihyung2023/ctr-seqrec-avazu
+## Modeling benchmark (leakage-safe CTR/RecSys): https://github.com/yoonjihyung2023/ctr-seqrec-avazu
