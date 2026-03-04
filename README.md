@@ -40,4 +40,3 @@ py inspect_ckpt.py --path models/model.pth
 Related
 
 Modeling benchmark (leakage-safe CTR/RecSys): https://github.com/yoonjihyung2023/ctr-seqrec-avazu
-
