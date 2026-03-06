@@ -1,45 +1,44 @@
-﻿## ctr-api
-FastAPI + Docker serving demo for CTR (click-through rate) models.
+# ctr-api
 
-## What this repo shows
-- Minimal inference API: `/health`, `/model-info`, `/predict`
-- Docker build/run (copy-paste friendly)
-- Example requests in Windows PowerShell
+**FastAPI + Docker serving demo for CTR-style model inference**  
+**Companion repo to [`ctr-seqrec-avazu`](https://github.com/yoonjihyung2023/ctr-seqrec-avazu)**  
+Exposes simple inference endpoints: `/health`, `/model-info`, `/predict`
 
-## Quickstart (Docker)
+## One-line
+A lightweight ML serving demo that packages a trained CTR-style model behind a FastAPI API with Docker.
+
+## Why this repo matters
+- **Serving-ready demo** for ML inference
+- **FastAPI endpoints** for health check, model info, and prediction
+- **Dockerized workflow** for reproducible local deployment
+- Complements the offline benchmark in **`ctr-seqrec-avazu`**
+
+## Endpoints
+- `GET /health`
+- `GET /model-info`
+- `POST /predict`
+
+## Quickstart
 ```bash
 docker build -t ctr-api .
-docker run --rm -p 8000:8000 ctr-api
-```
+docker run -p 8000:8000 ctr-api
+curl http://127.0.0.1:8000/health
 
-## Test endpoints (PowerShell)
+## PowerShell examples
 irm http://127.0.0.1:8000/health
 irm http://127.0.0.1:8000/model-info
 
 $body = '{"features":[1,2,3],"request_id":"demo"}'
 irm http://127.0.0.1:8000/predict -Method Post -ContentType "application/json" -Body $body
+Example responses
+{"ok": true, "model_loaded": true}
+{"ok": true, "request_id": "demo", "score": 6.0}
+What this repo shows
 
-## Response examples (what you should see)
+Model loading and health check
 
-GET /health
+Simple inference API design
 
-{"ok":true,"model_loaded":true}
+Docker-based reproducible serving demo
 
-GET /model-info
-
-{"ok":true,"model_path":"models/model.pth","device":"cpu"}
-
-POST /predict
-
-{"ok":true,"request_id":"demo","score":6.0}
-
-Swagger UI: http://127.0.0.1:8000/docs
-
-## Utilities
-
-Inspect a model checkpoint:
-
-py inspect_ckpt.py --path models/model.pth
-Related
-
-## Modeling benchmark (leakage-safe CTR/RecSys): https://github.com/yoonjihyung2023/ctr-seqrec-avazu
+Portfolio evidence for ML deployment readiness
