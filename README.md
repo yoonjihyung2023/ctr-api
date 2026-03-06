@@ -4,7 +4,7 @@
 **Companion repo to [`ctr-seqrec-avazu`](https://github.com/yoonjihyung2023/ctr-seqrec-avazu)**  
 Exposes simple inference endpoints: `/health`, `/model-info`, `/predict`
 
-## One-line
+## Overview
 A lightweight ML serving demo that packages a trained CTR-style model behind a FastAPI API with Docker.
 
 ## Why this repo matters
@@ -23,22 +23,28 @@ A lightweight ML serving demo that packages a trained CTR-style model behind a F
 docker build -t ctr-api .
 docker run -p 8000:8000 ctr-api
 curl http://127.0.0.1:8000/health
+```
 
 ## PowerShell examples
+```powershell
 irm http://127.0.0.1:8000/health
 irm http://127.0.0.1:8000/model-info
 
 $body = '{"features":[1,2,3],"request_id":"demo"}'
 irm http://127.0.0.1:8000/predict -Method Post -ContentType "application/json" -Body $body
-Example responses
+```
+
+## Example responses
+```json
 {"ok": true, "model_loaded": true}
+```
+
+```json
 {"ok": true, "request_id": "demo", "score": 6.0}
-What this repo shows
+```
 
-Model loading and health check
-
-Simple inference API design
-
-Docker-based reproducible serving demo
-
-Portfolio evidence for ML deployment readiness
+## What this repo shows
+- Model loading and health check
+- Simple inference API design
+- Docker-based reproducible serving demo
+- Portfolio evidence for ML deployment readiness
