@@ -1,3 +1,5 @@
+﻿![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg?branch=main)
+
 
 ctr-api
 

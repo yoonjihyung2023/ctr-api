@@ -1,0 +1,47 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Validate FastAPI app import
+        run: |
+          python - <<'PY'
+          import importlib
+          candidates = ["app.main", "main"]
+          loaded = None
+          for name in candidates:
+              try:
+                  m = importlib.import_module(name)
+                  loaded = name
+                  break
+              except Exception:
+                  pass
+          if loaded is None:
+              raise SystemExit("Could not import app.main or main")
+          print(f"Imported module: {loaded}")
+          app = getattr(m, "app", None)
+          if app is None:
+              raise SystemExit("FastAPI app object named 'app' was not found")
+          print("FastAPI app object found")
+          PY
