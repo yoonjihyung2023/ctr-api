@@ -1,4 +1,4 @@
-﻿![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg?branch=main)
+![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg?branch=main)
 
 
 ctr-api
@@ -70,3 +70,22 @@ online inference demo: ctr-api
 Related project
 ctr-seqrec-avazu
 : leakage-safe CTR benchmark with reproducible metrics
+
+## Visible proof
+
+### Swagger / OpenAPI
+FastAPI exposes interactive API docs at:
+
+- http://127.0.0.1:8000/docs
+
+Screenshot placeholder:
+
+![Swagger UI](docs/swagger-ui.png)
+
+### Terminal demo
+Example local serving run with Docker and sample requests:
+
+![Terminal demo](docs/terminal-demo.png)
+
+### Latency note
+In a lightweight local CPU demo setting, single-request inference was fast enough for interactive testing (tens of milliseconds level, not a production benchmark).
