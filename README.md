@@ -103,3 +103,12 @@ Example local serving run with Docker and sample requests:
 ### Latency note
 In a lightweight local CPU demo setting, single-request inference was fast enough for interactive testing (tens of milliseconds level, not a production benchmark).
 
+## Live Demo
+
+- Swagger UI: https://ctr-api.onrender.com/docs
+- Health check: https://ctr-api.onrender.com/health
+
+### Deployment status
+
+This FastAPI CTR inference demo is deployed on Render and exposes a live Swagger UI for manual testing.
+
