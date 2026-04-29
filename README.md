@@ -1,3 +1,16 @@
+﻿# CTR API — FastAPI + Docker
+
+## 🚀 Live Demo
+https://ctr-api.onrender.com/docs
+
+## ⚡ Example Prediction
+``json
+{"ok": true, "request_id": "demo", "score": 0.732}
+⏱ Latency
+
+~10–20 ms / request (local)
+
+✅ CI
 ![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg?branch=main)
 
 
@@ -89,3 +102,4 @@ Example local serving run with Docker and sample requests:
 
 ### Latency note
 In a lightweight local CPU demo setting, single-request inference was fast enough for interactive testing (tens of milliseconds level, not a production benchmark).
+
