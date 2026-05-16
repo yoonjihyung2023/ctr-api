@@ -158,3 +158,29 @@ This repo is meant to show a practical serving layer for an ML portfolio:
 
 - Offline model evidence: [`ctr-seqrec-avazu`](https://github.com/yoonjihyung2023/ctr-seqrec-avazu)
 - Online inference demo: `ctr-api`
+
+## Demo Proof
+
+This repo demonstrates the **serving / deployment** part of my Ads/RecSys portfolio.
+
+- Framework: FastAPI
+- Packaging: Docker
+- API docs: Swagger UI
+- Endpoints:
+  - `GET /health`
+  - `GET /model-info`
+  - `POST /predict`
+- Live demo: https://ctr-api.onrender.com/docs
+
+## Suggested Screenshots
+
+Recommended files:
+
+- `docs/swagger-ui.png`
+- `docs/terminal-demo.png`
+
+Add screenshots later:
+
+- `![Swagger UI](docs/swagger-ui.png)`
+- `![Terminal demo](docs/terminal-demo.png)`
+
