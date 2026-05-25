@@ -1,10 +1,9 @@
-﻿# CTR API — FastAPI + Docker
+# CTR API — FastAPI + Docker
 
 Production-style inference API for CTR models.
 
 Part of end-to-end pipeline:
 training → serving → logging → retraining
-
 
 FastAPI + Docker serving demo for CTR-style model inference.
 
