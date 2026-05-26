@@ -83,3 +83,18 @@ https://github.com/yoonjihyung2023/ctr-seqrec-avazu
 - Uvicorn
 - GitHub Actions
 
+
+## Sample prediction request
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict ^
+  -H "Content-Type: application/json" ^
+  -d "{\"request_id\":\"demo\",\"features\":[1,2,3]}"
+```
+
+Expected response:
+
+```json
+{"ok":true,"request_id":"demo","score":6.0}
+```
+
