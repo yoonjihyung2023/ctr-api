@@ -1,4 +1,16 @@
-﻿
+﻿## Live API Verification
+
+- Health: https://ctr-api.onrender.com/health
+- Swagger UI: https://ctr-api.onrender.com/docs
+- Model info: https://ctr-api.onrender.com/model-info
+- Latest verification note: docs/live-api-verification.md
+
+Current check:
+- /health OK: **True**
+- /docs OK: **True**
+- /model-info OK: **True**
+
+
 [![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml)
 
 FastAPI + Docker inference API for CTR-style prediction.
@@ -96,5 +108,6 @@ Expected response:
 ```json
 {"ok":true,"request_id":"demo","score":6.0}
 ```
+
 
 

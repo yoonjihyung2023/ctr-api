@@ -1,6 +1,6 @@
 ﻿# Live API Verification
 
-Checked at: 2026-05-28 19:48:11 +09:00
+Checked at: 2026-05-28 19:50:07 +09:00
 
 ## Endpoints
 
@@ -18,8 +18,8 @@ Checked at: 2026-05-28 19:48:11 +09:00
 
 ## /health response
 
-``json
 {"ok":true,"model_loaded":true}
-/model-info response
-{"model_path":"demo","model_type":"stub","note":"MVP serving skeleton. Replace stub with real model loader."}
 
+## /model-info response
+
+{"model_path":"demo","model_type":"stub","note":"MVP serving skeleton. Replace stub with real model loader."}
