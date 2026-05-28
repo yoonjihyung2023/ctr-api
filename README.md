@@ -1,5 +1,4 @@
-﻿# ctr-api
-
+﻿
 [![CI](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/yoonjihyung2023/ctr-api/actions/workflows/ci.yml)
 
 FastAPI + Docker inference API for CTR-style prediction.
@@ -97,4 +96,5 @@ Expected response:
 ```json
 {"ok":true,"request_id":"demo","score":6.0}
 ```
+
 
