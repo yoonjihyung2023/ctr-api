@@ -1,4 +1,12 @@
-﻿## Live API Verification
+﻿## Model Note
+
+This project uses a **demo stub model for serving proof**.
+
+The goal of this repository is to demonstrate a production-style ML serving structure with FastAPI, Docker, health checks, API documentation, and predictable inference responses.
+
+It is not intended to claim a fully trained production CTR model.
+
+## Live API Verification
 
 - Health: https://ctr-api.onrender.com/health
 - Swagger UI: https://ctr-api.onrender.com/docs
@@ -108,6 +116,7 @@ Expected response:
 ```json
 {"ok":true,"request_id":"demo","score":6.0}
 ```
+
 
 
 
