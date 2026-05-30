@@ -120,3 +120,23 @@ Expected response:
 
 
 
+
+## API Docs
+
+After starting the server, open:
+
+```bash
+http://localhost:8000/docs
+
+The FastAPI Swagger UI provides interactive documentation for testing the API endpoints.n
+
+Project Structure
+ctr-api/
+├── app/
+│   └── main.py
+├── tests/
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+
