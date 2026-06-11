@@ -1,5 +1,28 @@
-﻿
-def clamp_score(score):
+﻿from typing import Any, Dict, Optional
+
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+
+app = FastAPI(
+    title="CTR API",
+    description="FastAPI demo for CTR prediction serving.",
+    version="0.1.0",
+)
+
+
+class PredictRequest(BaseModel):
+    user_id: Optional[str] = Field(default=None, description="User identifier")
+    item_id: Optional[str] = Field(default=None, description="Item identifier")
+    features: Dict[str, Any] = Field(default_factory=dict, description="Input feature dictionary")
+
+
+class PredictResponse(BaseModel):
+    score: float = Field(..., ge=0.0, le=1.0, description="CTR probability score in [0, 1]")
+    model: str = "demo-ctr-model"
+
+
+def clamp_score(score: float) -> float:
     """Clamp prediction score to a valid probability range [0.0, 1.0]."""
     try:
         score = float(score)
@@ -7,33 +30,35 @@ def clamp_score(score):
         score = 0.5
     return max(0.0, min(1.0, score))
 
-from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import List, Optional
-import os
-
-app = FastAPI(title="ctr-api", version="0.1.0")
-
-class PredictRequest(BaseModel):
-    # MVP: 숫자 feature 벡터만 받는 형태(나중에 Avazu feature dict로 확장)
-    features: List[float]
-    request_id: Optional[str] = None
 
 @app.get("/health")
-def health():
-    return {"ok": True, "model_loaded": True}
+def health() -> Dict[str, Any]:
+    return {"ok": True, "service": "ctr-api"}
+
 
 @app.get("/model-info")
-def model_info():
+def model_info() -> Dict[str, Any]:
     return {
-        "model_path": os.getenv("MODEL_PATH", "demo"),
-        "model_type": "stub",
-        "note": "MVP serving skeleton. Replace stub with real model loader."
+        "model": "demo-ctr-model",
+        "task": "CTR prediction",
+        "output": "score in [0, 1]",
     }
 
-@app.post("/predict")
-def predict(req: PredictRequest):
-    # MVP: 아직 모델 없으니 더미 점수(나중에 로더 연결)
-    score = float(sum(req.features)) if req.features else 0.0
-    return {"ok": True, "request_id": req.request_id, "score": clamp_score(score)}
 
+@app.post("/predict", response_model=PredictResponse)
+def predict(request: PredictRequest) -> PredictResponse:
+    # Demo scoring logic.
+    # In production, replace this with a loaded model prediction.
+    raw_score = 0.5
+
+    if request.user_id:
+        raw_score += 0.05
+
+    if request.item_id:
+        raw_score += 0.05
+
+    if request.features:
+        raw_score += min(len(request.features) * 0.01, 0.2)
+
+    score = clamp_score(raw_score)
+    return PredictResponse(score=score)
