@@ -1,4 +1,13 @@
-﻿from fastapi import FastAPI
+﻿
+def clamp_score(score):
+    """Clamp prediction score to a valid probability range [0.0, 1.0]."""
+    try:
+        score = float(score)
+    except (TypeError, ValueError):
+        score = 0.5
+    return max(0.0, min(1.0, score))
+
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Optional
 import os
@@ -26,4 +35,5 @@ def model_info():
 def predict(req: PredictRequest):
     # MVP: 아직 모델 없으니 더미 점수(나중에 로더 연결)
     score = float(sum(req.features)) if req.features else 0.0
-    return {"ok": True, "request_id": req.request_id, "score": score}
+    return {"ok": True, "request_id": req.request_id, "score": clamp_score(score)}
+
